@@ -1,12 +1,8 @@
-#include <iostream>
-#include <Windows.h>
-#include <direct.h>
-#include <d3d12.h>
+#include "Game.h"
 
-#define SAFE_DELETE(p) { if (p) { delete p; (p) = NULL; } }
-
-
-int main() {
-	
+int main()
+{
+	Game game = Game();
+	game.InitInstance();
 	return 0;
 }
