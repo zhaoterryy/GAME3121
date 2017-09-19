@@ -106,7 +106,7 @@ namespace
 
 		if (lError == ERROR_SUCCESS)
 		{
-			RegQueryValueEx(hKey, "Identifier", NULL, &type, (LPBYTE)&strId, &BufSize);
+			RegQueryValueEx(hKey, "ProcessorNameString", NULL, &type, (LPBYTE)&strId, &BufSize);
 		}
 		return std::string(strId);
 	}
@@ -116,7 +116,7 @@ namespace
 		MEMORYSTATUSEX status;
 		status.dwLength = sizeof(status);
 		GlobalMemoryStatusEx(&status);
-		return status.ullAvailPhys / 1000000000;
+		return status.ullAvailPhys / (1024 * 1024 * 1024);
 	}
 
 	DWORDLONG ReadAvailableVirtualMemory()
@@ -124,20 +124,20 @@ namespace
 		MEMORYSTATUSEX status;
 		status.dwLength = sizeof(status);
 		GlobalMemoryStatusEx(&status);
-		return status.ullAvailVirtual / 1000000000;
+		return status.ullAvailVirtual / (1024 * 1024 * 1024);
 	}
 }
 
 void Game::InitInstance()
 {
-	IsOnlyInstance(gameTitle.c_str()) ? std::cout << "This is the only instance running." : 
+	IsOnlyInstance(gameTitle.c_str()) ? std::cout << "This is the only instance running." :
 		std::cout << "There are multiple instances running.";
 
 	std::cout << std::endl;
 
 	CheckStorage(314572800) ? std::cout << "There is enough disk space to play this game." :
 		std::cout << "There is not enough disk space to play this game.";
-	
+
 	std::cout << std::endl;
 
 	std::cout << "RAM: " << ReadAvailableRAM() << " GB" << std::endl;
