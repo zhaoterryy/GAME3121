@@ -1,1 +1,6 @@
 ./Temp
+*.tlog
+*.exe
+*.enc
+*.idb
+*.VC.db
