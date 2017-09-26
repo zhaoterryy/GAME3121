@@ -4,3 +4,5 @@
 *.enc
 *.idb
 *.VC.db
+*.VC.VC.opendb
+*.vcxproj.filters
